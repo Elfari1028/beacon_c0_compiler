@@ -8,7 +8,6 @@ class Scanner {
   Scanner(this.file) {
     final fin = this.file;
     Stream<List<int>> inputStream = fin.openRead();
-
     inputStream
         .transform(utf8.decoder) // Decode bytes to UTF-8.
         .transform(new LineSplitter()) // Convert stream to individual lines.

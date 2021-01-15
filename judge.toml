@@ -9,5 +9,5 @@ image = { source = "dockerfile", path = ".", tag = "my-pascal-lexer" }
 # 假如你用的是 Dart
 run = [
   # 运行程序
-  "dart ./bin/beacon_compiler.dart $input $asm",
+  "dart ./bin/main.dart $input $asm",
 ]
