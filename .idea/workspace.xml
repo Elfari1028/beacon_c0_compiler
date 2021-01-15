@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="34422e65-17fa-4c7c-a738-98aaac9a79b2" name="默认更改列表" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ljmC0Final/test/result.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ljmC0Final/test/result.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/instruction/InstructionEntry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/instruction/InstructionEntry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/instruction/OutPut.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/instruction/OutPut.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/ljm.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/ljm.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/result.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/result.txt" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+        <option name="jdkForImporter" value="#JAVA_HOME" />
+        <option name="vmOptionsForImporter" value="-Xmx768m" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1m6JInmr1I7f6ESYZfl5dpYTDoG" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="添加" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/test" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.importing" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="analyser" />
+      <recent name="instruction" />
+      <recent name="utils" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\buaa\2020autumn\编译原理与技术\大作业\ljmC0Final\src\test" />
+      <recent name="D:\buaa\2020autumn\编译原理与技术\大作业\ljmC0Final\src\analyser" />
+      <recent name="D:\buaa\2020autumn\编译原理与技术\大作业\ljmC0Final\src" />
+      <recent name="D:\buaa\2020autumn\编译原理与技术\大作业\ljmC0Final" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.test.simpleCompile">
+    <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="App" />
+      <module name="ljmC0Final" />
+      <option name="PROGRAM_PARAMETERS" value="src/test/result.txt" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ljmC0Final" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.test" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="test.simpleCompile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ljmC0Final" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.test" />
+      <option name="METHOD_NAME" value="simpleCompile" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="test.symbolTableTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ljmC0Final" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.test" />
+      <option name="METHOD_NAME" value="symbolTableTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="test.tokenizer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ljmC0Final" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.test" />
+      <option name="METHOD_NAME" value="tokenizer" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.App" />
+      <item itemvalue="JUnit.test.simpleCompile" />
+      <item itemvalue="JUnit.test.tokenizer" />
+      <item itemvalue="JUnit.test" />
+      <item itemvalue="JUnit.test.symbolTableTest" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.test.simpleCompile" />
+        <item itemvalue="JUnit.test.tokenizer" />
+        <item itemvalue="JUnit.test.symbolTableTest" />
+        <item itemvalue="JUnit.test" />
+        <item itemvalue="Application.App" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="34422e65-17fa-4c7c-a738-98aaac9a79b2" name="默认更改列表" comment="" />
+      <created>1608808029626</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1608808029626</updated>
+      <workItem from="1608808031532" duration="3967000" />
+      <workItem from="1608819840985" duration="9238000" />
+      <workItem from="1608955193585" duration="11204000" />
+      <workItem from="1609051385087" duration="12235000" />
+      <workItem from="1609142719882" duration="46401000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="57" y="39" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1608972393234">
+      <screen x="0" y="0" width="1200" height="760" />
+    </state>
+    <state x="57" y="39" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1200.760@0.0.1200.760" timestamp="1608972393234" />
+    <state x="723" y="192" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1610204530218">
+      <screen x="0" y="0" width="1200" height="760" />
+    </state>
+    <state x="723" y="192" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1200.760@0.0.1200.760" timestamp="1610204530218" />
+    <state x="706" y="76" key="#com.intellij.ide.util.MemberChooser" timestamp="1609253400736">
+      <screen x="0" y="0" width="1200" height="760" />
+    </state>
+    <state x="706" y="76" key="#com.intellij.ide.util.MemberChooser/0.0.1200.760@0.0.1200.760" timestamp="1609253400736" />
+    <state x="490" y="311" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1608808062961">
+      <screen x="0" y="0" width="1200" height="760" />
+    </state>
+    <state x="490" y="311" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1200.760@0.0.1200.760" timestamp="1608808062961" />
+    <state x="0" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1608956202114">
+      <screen x="0" y="0" width="1200" height="760" />
+    </state>
+    <state x="0" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1200.760@0.0.1200.760" timestamp="1608956202114" />
+    <state x="631" y="133" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1609063230791">
+      <screen x="0" y="0" width="1200" height="760" />
+    </state>
+    <state x="631" y="133" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1200.760@0.0.1200.760" timestamp="1609063230791" />
+    <state width="555" height="574" key="GridCell.Tab.0.bottom" timestamp="1610259125932">
+      <screen x="0" y="0" width="1200" height="760" />
+    </state>
+    <state width="555" height="574" key="GridCell.Tab.0.bottom/0.0.1200.760@0.0.1200.760" timestamp="1610259125932" />
+    <state width="555" height="574" key="GridCell.Tab.0.center" timestamp="1610259125932">
+      <screen x="0" y="0" width="1200" height="760" />
+    </state>
+    <state width="555" height="574" key="GridCell.Tab.0.center/0.0.1200.760@0.0.1200.760" timestamp="1610259125932" />
+    <state width="555" height="574" key="GridCell.Tab.0.left" timestamp="1610259125932">
+      <screen x="0" y="0" width="1200" height="760" />
+    </state>
+    <state width="555" height="574" key="GridCell.Tab.0.left/0.0.1200.760@0.0.1200.760" timestamp="1610259125932" />
+    <state width="555" height="574" key="GridCell.Tab.0.right" timestamp="1610259125932">
+      <screen x="0" y="0" width="1200" height="760" />
+    </state>
+    <state width="555" height="574" key="GridCell.Tab.0.right/0.0.1200.760@0.0.1200.760" timestamp="1610259125932" />
+    <state width="1157" height="239" key="GridCell.Tab.1.bottom" timestamp="1610258643708">
+      <screen x="0" y="0" width="1200" height="760" />
+    </state>
+    <state width="1157" height="239" key="GridCell.Tab.1.bottom/0.0.1200.760@0.0.1200.760" timestamp="1610258643708" />
+    <state width="1157" height="239" key="GridCell.Tab.1.center" timestamp="1610258643708">
+      <screen x="0" y="0" width="1200" height="760" />
+    </state>
+    <state width="1157" height="239" key="GridCell.Tab.1.center/0.0.1200.760@0.0.1200.760" timestamp="1610258643708" />
+    <state width="1157" height="239" key="GridCell.Tab.1.left" timestamp="1610258643708">
+      <screen x="0" y="0" width="1200" height="760" />
+    </state>
+    <state width="1157" height="239" key="GridCell.Tab.1.left/0.0.1200.760@0.0.1200.760" timestamp="1610258643708" />
+    <state width="1157" height="239" key="GridCell.Tab.1.right" timestamp="1610258643708">
+      <screen x="0" y="0" width="1200" height="760" />
+    </state>
+    <state width="1157" height="239" key="GridCell.Tab.1.right/0.0.1200.760@0.0.1200.760" timestamp="1610258643708" />
+    <state x="313" y="209" key="com.intellij.ide.util.TipDialog" timestamp="1608819840834">
+      <screen x="0" y="0" width="1200" height="760" />
+    </state>
+    <state x="313" y="209" key="com.intellij.ide.util.TipDialog/0.0.1200.760@0.0.1200.760" timestamp="1608819840834" />
+    <state x="305" y="282" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1608808274667">
+      <screen x="0" y="0" width="1200" height="760" />
+    </state>
+    <state x="305" y="282" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1200.760@0.0.1200.760" timestamp="1608808274667" />
+    <state x="605" y="6" key="refactoring.ChangeSignatureDialog" timestamp="1609141445649">
+      <screen x="0" y="0" width="1200" height="760" />
+    </state>
+    <state x="605" y="6" key="refactoring.ChangeSignatureDialog/0.0.1200.760@0.0.1200.760" timestamp="1609141445649" />
+    <state x="568" y="81" width="672" height="678" key="search.everywhere.popup" timestamp="1610180552436">
+      <screen x="0" y="0" width="1200" height="760" />
+    </state>
+    <state x="568" y="81" width="672" height="678" key="search.everywhere.popup/0.0.1200.760@0.0.1200.760" timestamp="1610180552436" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/analyser/Analyser.java</url>
+          <line>358</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/analyser/Analyser.java</url>
+          <line>497</line>
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/analyser/Analyser.java</url>
+          <line>629</line>
+          <option name="timeStamp" value="36" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
