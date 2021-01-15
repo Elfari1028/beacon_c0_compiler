@@ -1,4 +1,9 @@
-FROM openjdk:11
+FROM google/dart
+
 WORKDIR /app/
-COPY ./* ./
-RUN javac -encoding UTF-8 *.java
+
+COPY pubspec.* /app/
+RUN pub get
+
+COPY . /app/
+RUN pub get --offline
