@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'instruction/output.dart';
 
 int main(List<String> args) {
@@ -7,6 +9,6 @@ int main(List<String> args) {
     return 0;
   } catch (e) {
     print(e);
-    return 1;
+    exit(-1);
   }
 }

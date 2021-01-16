@@ -70,6 +70,7 @@ class OutPut {
     symbolTable.forEach((key, symbolEntry) {
       if (!(symbolEntry.getKind() == ("func"))) {
         trueGlobalVarsCount++;
+        globals.add(null);
         if (symbolEntry.getKind() == ("string")) {
           String name = key;
           print(name);

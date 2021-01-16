@@ -831,7 +831,6 @@ class Analyser {
     TokenType type = analyseA(funcName);
 
     if (check(TokenType.AS_KW)) {
-      expect(TokenType.AS_KW);
       SymbolEntry funcSymbol = symbolTable[funcName];
       List<InstructionEntry> instructionEntries = funcSymbol.getInstructions();
       InstructionEntry instructionEntry;
