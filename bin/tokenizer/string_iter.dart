@@ -1,7 +1,7 @@
 import 'dart:ffi';
 import 'dart:typed_data';
 
-import 'package:binary_codec/binary_codec.dart';
+import '../../lib/binary_codec/binary_codec.dart';
 
 import '../util/optional.dart';
 import '../util/pos.dart';
