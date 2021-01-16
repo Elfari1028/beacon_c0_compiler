@@ -1,9 +1,8 @@
 class InstructionEntry {
   String ins;
-  int op = -10010;
+  int op;
 
-  InstructionEntry(this.ins, {this.op}) {
-    this.ins = ins;
+  InstructionEntry(this.ins, {this.op = -10010}) {
   }
   //   InstructionEntry(String ins, int op){
   //     this.ins = ins;

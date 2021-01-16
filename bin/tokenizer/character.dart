@@ -37,7 +37,8 @@ class Character {
   }
 
   static bool isWhitespace(Char ch) {
-    if (ch.value == 32)
+    if (String.fromCharCode(ch.value) == ' ' ||
+        String.fromCharCode(ch.value) == "\n")
       return true;
     else
       return false;

@@ -8,12 +8,12 @@ class Optional<T> {
     return true;
   }
 
-  Optional(this.data) {}
+  Optional(this.data);
   Optional.of(data) {
     Type type = data.runtimeType;
-    Optional(data);
+    this.data = data;
   }
-  T get() {
+  T obt() {
     if (data == null) {
       throw NullThrownError();
     }

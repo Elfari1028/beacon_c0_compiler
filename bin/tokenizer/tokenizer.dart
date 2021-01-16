@@ -34,15 +34,17 @@ class Tokenizer {
     }
 
     Char peek = it.peekChar();
+    // print(String.fromCharCode(peek.value));
     if (Character.isDigit(peek)) {
       return lexUIntOrDouble();
-    } else if (peek == '"') {
+    } else if (String.fromCharCode(it.peekChar().value) == '"') {
       return lexString();
-    } else if (peek == '\'') {
+    } else if (String.fromCharCode(it.peekChar().value) == '\'') {
       return lexChar();
-    } else if (Character.isAlphabetic(peek) || peek == '_') {
+    } else if (Character.isAlphabetic(peek) ||
+        String.fromCharCode(it.peekChar().value) == '_') {
       return lexIdentOrKeyword();
-    } else if (peek == '/') {
+    } else if (String.fromCharCode(it.peekChar().value) == '/') {
       return lexComment();
     } else {
       return lexOperatorOrUnknown();
@@ -52,13 +54,14 @@ class Tokenizer {
   Token lexComment() {
     Pos start = it.currentPos();
     Char now = it.nextChar();
-    if (it.peekChar() != '/') {
+    if (String.fromCharCode(it.peekChar().value) != '/') {
       return new Token(TokenType.DIV, '/', it.previousPos(), it.currentPos());
     }
     while (true) {
       token.appendChar(now);
       now = it.nextChar();
-      if (now == '\n' || now == '\t' || now == '\r') {
+      String nowStr = String.fromCharCode(now.value);
+      if (nowStr == '\n' || nowStr == '\t' || nowStr == '\r') {
         break;
       }
     }
@@ -80,7 +83,7 @@ class Tokenizer {
       Char now = it.nextChar();
       token.appendChar(now);
     }
-    if (it.peekChar() != '.') {
+    if (String.fromCharCode(it.peekChar().value) != '.') {
       Pos tokenPos =
           new Pos(it.currentPos().row, it.currentPos().col - token.length());
       return new Token(TokenType.UINT_LITERAL, int.parse(token.toString()),
@@ -97,9 +100,11 @@ class Tokenizer {
           new Pos(it.currentPos().row, it.currentPos().col - token.length());
       return null;
     }
-    if (it.peekChar() == 'e' || it.peekChar() == 'E') {
+    if (String.fromCharCode(it.peekChar().value) == 'e' ||
+        String.fromCharCode(it.peekChar().value) == 'E') {
       token.appendChar(it.nextChar());
-      if (it.peekChar() == '+' || it.peekChar() == '-')
+      if (String.fromCharCode(it.peekChar().value) == '+' ||
+          String.fromCharCode(it.peekChar().value) == '-')
         token.appendChar(it.nextChar());
       int j = 0;
       while (Character.isDigit(it.peekChar())) {
@@ -172,11 +177,11 @@ class Tokenizer {
 
   Token lexChar() {
     Pos start = it.currentPos();
-    Char peek;
+    String peek;
     Char now;
     it.nextChar();
     while (true) {
-      peek = it.peekChar();
+      peek = String.fromCharCode(it.peekChar().value);
       if (peek == '\'') {
         it.nextChar();
         break;
@@ -185,7 +190,7 @@ class Tokenizer {
         break;
       } else if (peek == '\\') {
         it.nextChar();
-        peek = it.peekChar();
+        peek = String.fromCharCode(it.peekChar().value);
 //                if (peek == '\\' || peek == '"' || peek == '\'' || peek == 'n' || peek == 'r' || peek == 't') {
 //                    token.appendChar(now);
 //                }
@@ -194,7 +199,7 @@ class Tokenizer {
 //                    break;
 //                }
         if (peek == '\\' || peek == '"' || peek == '\'') {
-          token.appendChar(peek);
+          token.appendChar(it.peekChar());
         } else if (peek == 'r') {
           token.append('\r');
         } else if (peek == 'n') {
@@ -221,13 +226,16 @@ class Tokenizer {
   }
 
   Token lexIdentOrKeyword() {
+    // print(token);
     token.clear();
 
     Pos start = it.currentPos();
-
+    // print(start);
     while (true) {
       Char peek = it.peekChar();
-      if (!Character.isLetterOrDigit(peek) && peek != '_') {
+      // print(String.fromCharCode(peek.value));
+      if (!Character.isLetterOrDigit(peek) &&
+          String.fromCharCode(it.peekChar().value) != '_') {
         break;
       }
       Char now = it.nextChar();
@@ -305,12 +313,13 @@ class Tokenizer {
   }
 
   Token lexOperatorOrUnknown() {
-    switch (String.fromCharCode(it.nextChar().value)) {
+    String sw = String.fromCharCode(it.nextChar().value);
+    switch (sw) {
       case '+':
         return new Token(TokenType.PLUS, '+', it.previousPos(),
             it.currentPos()); //区别 MINUS 和 ARROW
       case '-':
-        if (it.peekChar() == '>') {
+        if (String.fromCharCode(it.peekChar().value) == '>') {
           it.nextChar();
           return new Token(
               TokenType.ARROW, "->", it.previousPos(), it.currentPos());
@@ -343,7 +352,7 @@ class Tokenizer {
         return new Token(
             TokenType.SEMICOLON, ';', it.previousPos(), it.currentPos());
       case '=':
-        if (it.peekChar() == '=') {
+        if (String.fromCharCode(it.peekChar().value) == '=') {
           it.nextChar();
           return new Token(
               TokenType.EQ, "==", it.previousPos(), it.currentPos());
@@ -354,18 +363,18 @@ class Tokenizer {
         break;
       //判断 NEQ
       case '!':
-        if (it.peekChar() == '=') {
+        if (String.fromCharCode(it.peekChar().value) == '=') {
           it.nextChar();
           return new Token(
               TokenType.NEQ, "!=", it.previousPos(), it.currentPos());
         } else {
           throw new TokenizeError(ErrorCode.InvalidInput, it.previousPos());
         }
-        
+
         break;
       //判断 LT 和 LE
       case '<':
-        if (it.peekChar() == '=') {
+        if (String.fromCharCode(it.peekChar().value) == '=') {
           it.nextChar();
           return new Token(
               TokenType.LE, "<=", it.previousPos(), it.currentPos());
@@ -373,11 +382,11 @@ class Tokenizer {
           return new Token(
               TokenType.LT, '<', it.previousPos(), it.currentPos());
         }
-        
+
         break;
       //判断 GT 和 GE
       case '>':
-        if (it.peekChar() == '=') {
+        if (String.fromCharCode(it.peekChar().value) == '=') {
           it.nextChar();
           return new Token(
               TokenType.GE, ">=", it.previousPos(), it.currentPos());
@@ -385,16 +394,18 @@ class Tokenizer {
           return new Token(
               TokenType.GT, '>', it.previousPos(), it.currentPos());
         }
-        
+
         break;
 
       default:
+        // print("its +\""+ sw+"\"");
         throw new TokenizeError(ErrorCode.InvalidInput, it.previousPos());
     }
   }
 
   void skipSpaceCharacters() {
-    while (!it.isEOF() && Character.isWhitespace(it.peekChar())) {
+    while ((!it.isEOF()) && Character.isWhitespace(it.peekChar())) {
+      // print(String.fromCharCode(it.peekChar().value));
       it.nextChar();
     }
   }

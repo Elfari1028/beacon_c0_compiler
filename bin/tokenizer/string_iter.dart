@@ -68,9 +68,11 @@ class StringIter {
     if (ptr.row >= linesBuffer.length) {
       throw new TokenError("advance after EOF");
     }
-    if (ptr.col == linesBuffer[ptr.row].length - 1) {
+    if (ptr.col == linesBuffer[ptr.row].length - 1 ||
+        linesBuffer[ptr.row][ptr.col + 1] == '\n') {
       return new Pos(ptr.row + 1, 0);
     }
+    // print(linesBuffer[ptr.row][ptr.col + 1]);
     return new Pos(ptr.row, ptr.col + 1);
   }
 
@@ -99,7 +101,7 @@ class StringIter {
      */
   Char nextChar() {
     if (this.peeked.isPresent()) {
-      Char ch = this.peeked.get();
+      Char ch = this.peeked.obt();
       this.peeked = Optional.empty();
       this.ptr = ptrNext;
       return ch;
@@ -117,10 +119,12 @@ class StringIter {
     } else {
       result = linesBuffer[ptr.row].codeUnitAt(ptrNext.col);
       ptrNext = nextPos();
+      // print(ptrNext);
     }
     //TODO : test this;
     Uint8List list = binaryCodec.encode(result);
     Char ret = Char(list[0]);
+    // print(String.fromCharCode(result));
     return ret;
   }
 
@@ -129,10 +133,13 @@ class StringIter {
      */
   Char peekChar() {
     if (peeked.isPresent()) {
-      return peeked.get();
+      // print("present");
+      return peeked.obt();
     } else {
+      // print("not present");
       Char ch = getNextChar();
-      this.peeked = Optional.of(ch);
+      peeked = Optional.of(ch);
+      // print("not present, then: " + String.fromCharCode(peeked.data.value));
       return ch;
     }
   }

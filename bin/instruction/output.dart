@@ -10,13 +10,14 @@ import '../tokenizer/character.dart';
 import '../tokenizer/string_iter.dart';
 import '../tokenizer/token_type.dart';
 import '../tokenizer/tokenizer.dart';
+import '../util/hex_list.dart';
 import '../util/scanner.dart';
 import 'instruction_entry.dart';
 
 class OutPut {
   String inPath;
   String outPath;
-
+  OutPut(this.inPath, this.outPath) {}
   String getInPath() {
     return inPath;
   }
@@ -33,17 +34,25 @@ class OutPut {
     this.outPath = outPath;
   }
 
-  void output() {
+  void start() {
     File fin = new File(inPath); //转入的文件对象
     Stream<List<int>> inputStream = fin.openRead();
+    List<String> lines = [];
     inputStream
         .transform(utf8.decoder) // Decode bytes to UTF-8.
         .transform(new LineSplitter()) // Convert stream to individual lines.
         .listen((String line) {
       // Process results.
+      // line = line.replaceAll("\r", "");
+      lines.add(line);
       print(line);
+    }, onDone: () {
+      output(lines);
     });
-    Scanner sc = new Scanner(File(inPath));
+  }
+
+  void output(List lines) {
+    Scanner sc = new Scanner(lines);
     StringIter it = new StringIter(sc);
     Tokenizer tn = new Tokenizer(it);
     Analyser an = new Analyser(tn);
@@ -57,6 +66,7 @@ class OutPut {
     List<Func> functions = [];
     int functionCount = 0;
 
+    // print(symbolTable);
     symbolTable.forEach((key, symbolEntry) {
       if (!(symbolEntry.getKind() == ("func"))) {
         trueGlobalVarsCount++;
@@ -73,10 +83,16 @@ class OutPut {
     });
 
     int globalVarsEnd = top;
-
+    // print(symbolTable);
     symbolTable.forEach((name, symbolEntry) {
       if (symbolEntry.getKind() == ("func")) {
         int funcIndex = an.getFuncIndex(name);
+        // print("never here right?" +
+        //     funcIndex.toString() +
+        //     " " +
+        //     globalVarsEnd.toString());
+        // print(globals[funcIndex + globalVarsEnd]);
+        while (globals.length <= funcIndex + globalVarsEnd) globals.add(null);
         globals[funcIndex + globalVarsEnd] = new Global(1, name.length, name);
         top++;
       }
@@ -103,6 +119,7 @@ class OutPut {
       int loc_slots = funcEntry.getLocVars().length;
       List<InstructionEntry> instructionEntries = funcEntry.getInstructions();
       int body_count = instructionEntries.length;
+      while (functions.length <= funcTableTop) functions.add(null);
       if (funcName == ("_start")) {
         functions[funcTableTop++] =
             new Func(i, 0, 0, 0, body_count, instructionEntries);
@@ -132,24 +149,31 @@ class OutPut {
     }
     print(globalCount);
     print(functionCount);
-    Uint8List output = new Uint8List(0);
+    HexList output = HexList();
+
+    File file = new File(outPath);
+    var sink = file.openWrite();
     //magic
-    Uint8List magic = int2bytes(4, 0x72303b3e);
-    output.addAll(magic);
+    HexList magic = int2bytes(4, 0x72303b3e);
+    // output.addAll(magic);
+    sink.writeln(magic);
     //version
-    Uint8List version = int2bytes(4, 0x00000001);
-    output.addAll(version);
+    HexList version = int2bytes(4, 0x00000001);
+    // output.addAll(version);
+    sink.writeln(version);
     //globals.count
-    Uint8List globalCountByte = int2bytes(4, globalCount);
-    output.addAll(globalCountByte);
+    HexList globalCountByte = int2bytes(4, globalCount);
+    // output.addAll(globalCountByte);
+    sink.writeln(globalCountByte);
     for (int i = 0; i < globalCount; i++) {
       //isConst
-      Uint8List isConst = int2bytes(1, globals[i].getIsConst());
-      output.addAll(isConst);
+      HexList isConst = int2bytes(1, globals[i].getIsConst());
+      // output.addAll(isConst);
+      sink.writeln(isConst);
       // value count
-      Uint8List globalValueCountByte;
+      HexList globalValueCountByte;
       //value items
-      Uint8List globalValueItemByte;
+      HexList globalValueItemByte;
       if (globals[i].getValueItem() == ("0")) {
         globalValueCountByte = int2bytes(4, 8);
         globalValueItemByte = long2bytes(8, 0);
@@ -157,35 +181,39 @@ class OutPut {
         globalValueItemByte = String2bytes(globals[i].getValueItem());
         globalValueCountByte = int2bytes(4, globals[i].getValueCount());
       }
-      output.addAll(globalValueCountByte);
-      output.addAll(globalValueItemByte);
+      sink.writeln(globalValueCountByte);
+      sink.writeln(globalValueItemByte);
+      // output.addAll(globalValueCountByte);
+      // output.addAll(globalValueItemByte);
     }
     //functions.count
-    Uint8List functionCountByte = int2bytes(4, functionCount);
-    output.addAll(functionCountByte);
+    HexList functionCountByte = int2bytes(4, functionCount);
+    // output.addAll(functionCountByte);
+    sink.writeln(functionCountByte);
     //functions
     for (int i = 0; i < functionCount; i++) {
       //name
-      Uint8List name = int2bytes(4, functions[i].getNameLoc());
-      output.addAll(name);
+      HexList name = int2bytes(4, functions[i].getNameLoc());
+      sink.writeln(name);
       //retSlots
-      Uint8List retSlots = int2bytes(4, functions[i].getRet_slots());
-      output.addAll(retSlots);
+      HexList retSlots = int2bytes(4, functions[i].getRet_slots());
+      sink.writeln(retSlots);
       //paramsSlots;
-      Uint8List paramsSlots = int2bytes(4, functions[i].getParam_slots());
-      output.addAll(paramsSlots);
+      HexList paramsSlots = int2bytes(4, functions[i].getParam_slots());
+      sink.writeln(paramsSlots);
       //locSlots;
-      Uint8List locSlots = int2bytes(4, functions[i].getLoc_slots());
-      output.addAll(locSlots);
+      HexList locSlots = int2bytes(4, functions[i].getLoc_slots());
+      sink.writeln(locSlots);
       //bodyCount
-      Uint8List bodyCount = int2bytes(4, functions[i].getBody_count());
-      output.addAll(bodyCount);
+      HexList bodyCount = int2bytes(4, functions[i].getBody_count());
+      sink.writeln(bodyCount);
       //instructions
       for (int j = 0; j < functions[i].getBody_count(); j++) {
         InstructionEntry instructionEntry = functions[i].getInstructions()[j];
         int intInstru = instruToInt(instructionEntry.getIns());
-        Uint8List instruByte = int2bytes(1, intInstru);
-        output.addAll(instruByte);
+        HexList instruByte = int2bytes(1, intInstru);
+        sink.writeln(instruByte);
+        print((instructionEntry.ins) + instructionEntry.getOp().toString());
         if (instructionEntry.getOp() != -10010) {
           int opera = instructionEntry.getOp();
           if (intInstru == 0x4a) {
@@ -196,30 +224,26 @@ class OutPut {
           }
           bool is64OrNot = is64(instructionEntry.getIns());
           if (is64OrNot) {
-            Uint8List operaByte = long2bytes(8, opera);
-            output.addAll(operaByte);
+            HexList operaByte = long2bytes(8, opera);
+            sink.writeln(operaByte);
           } else {
-            Uint8List operaByte = int2bytes(4, opera);
-            output.addAll(operaByte);
+            HexList operaByte = int2bytes(4, opera);
+            sink.writeln(operaByte);
           }
         }
       }
     }
-
-    File file = new File(outPath);
-    var sink = file.openWrite();
-    sink.write(output);
     sink.close();
   }
 
-  static Uint8List Char2bytes(Char value) {
-    Uint8List AB = new Uint8List(0);
+  static HexList Char2bytes(Char value) {
+    HexList AB = new HexList();
     AB.add((value.value & 0xff));
     return AB;
   }
 
-  static Uint8List String2bytes(String valueString) {
-    Uint8List AB = new Uint8List(0);
+  static HexList String2bytes(String valueString) {
+    HexList AB = new HexList();
     for (int i = 0; i < valueString.length; i++) {
       Char ch = Char(valueString.codeUnitAt(i));
       AB.add((ch.value & 0xff));
@@ -227,8 +251,8 @@ class OutPut {
     return AB;
   }
 
-  static Uint8List long2bytes(int length, int target) {
-    Uint8List bytes = new Uint8List(0);
+  static HexList long2bytes(int length, int target) {
+    HexList bytes = new HexList();
     int start = 8 * (length - 1);
     for (int i = 0; i < length; i++) {
       bytes.add(((target >> (start - i * 8)) & 0xFF));
@@ -236,8 +260,8 @@ class OutPut {
     return bytes;
   }
 
-  static Uint8List int2bytes(int length, int target) {
-    Uint8List bytes = new Uint8List(0);
+  static HexList int2bytes(int length, int target) {
+    HexList bytes = new HexList();
     int start = 8 * (length - 1);
     for (int i = 0; i < length; i++) {
       bytes.add(((target >> (start - i * 8)) & 0xFF));
