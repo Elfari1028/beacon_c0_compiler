@@ -5,7 +5,8 @@ class HexList {
   String toString() {
     String ret = "";
     list.forEach((element) {
-      ret += element.toRadixString(16).padLeft(2,'0') + " ";
+      ret += String.fromCharCode(element);
+      // element.toRadixString(16).padLeft(2,'0') + " ";
     });
     return ret;
   }
