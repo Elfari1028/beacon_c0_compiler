@@ -22,7 +22,7 @@ public class Assembler {
             BufferedReader in = new BufferedReader(new FileReader(fin)); // 打开输入流
             String s;
             while ((s = in.readLine()) != null) {// 读字符串
-                // System.out.println(s); // 写出
+                System.out.println(s); // 写出
             }
             in.close(); // 关闭缓冲读入流及文件读入流的连接
         } catch (FileNotFoundException e1) { // 异常处理
