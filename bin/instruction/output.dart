@@ -157,20 +157,22 @@ class OutPut {
     //magic
     HexList magic = int2bytes(4, 0x72303b3e);
     // output.addAll(magic);
-    sink.writeln(magic);
+    sink.write(magic);
     //version
     HexList version = int2bytes(4, 0x00000001);
     // output.addAll(version);
-    sink.writeln(version);
+    sink.write(version);
     //globals.count
     HexList globalCountByte = int2bytes(4, globalCount);
+    // sink.write("-M-");
     // output.addAll(globalCountByte);
-    sink.writeln(globalCountByte);
+    sink.write(globalCountByte);
     for (int i = 0; i < globalCount; i++) {
+      // sink.write("-G-"+i.toString()+"-");
       //isConst
       HexList isConst = int2bytes(1, globals[i].getIsConst());
       // output.addAll(isConst);
-      sink.writeln(isConst);
+      sink.write(isConst);
       // value count
       HexList globalValueCountByte;
       //value items
@@ -182,39 +184,42 @@ class OutPut {
         globalValueItemByte = String2bytes(globals[i].getValueItem());
         globalValueCountByte = int2bytes(4, globals[i].getValueCount());
       }
-      sink.writeln(globalValueCountByte);
-      sink.writeln(globalValueItemByte);
+      sink.write(globalValueCountByte);
+      sink.write(globalValueItemByte);
       // output.addAll(globalValueCountByte);
       // output.addAll(globalValueItemByte);
     }
+    // sink.write("-FC-");
     //functions.count
     HexList functionCountByte = int2bytes(4, functionCount);
     // output.addAll(functionCountByte);
-    sink.writeln(functionCountByte);
+    sink.write(functionCountByte);
     //functions
     for (int i = 0; i < functionCount; i++) {
+      // sink.write("-FN-"+i.toString()+"-");
       //name
       HexList name = int2bytes(4, functions[i].getNameLoc());
-      sink.writeln(name);
+      sink.write(name);
       //retSlots
       HexList retSlots = int2bytes(4, functions[i].getRet_slots());
-      sink.writeln(retSlots);
+      sink.write(retSlots);
       //paramsSlots;
       HexList paramsSlots = int2bytes(4, functions[i].getParam_slots());
-      sink.writeln(paramsSlots);
+      sink.write(paramsSlots);
       //locSlots;
       HexList locSlots = int2bytes(4, functions[i].getLoc_slots());
-      sink.writeln(locSlots);
+      sink.write(locSlots);
       //bodyCount
       HexList bodyCount = int2bytes(4, functions[i].getBody_count());
-      sink.writeln(bodyCount);
+      sink.write(bodyCount);
       //instructions
       for (int j = 0; j < functions[i].getBody_count(); j++) {
+        // sink.write("-FB-"+j.toString()+"-");
         InstructionEntry instructionEntry = functions[i].getInstructions()[j];
         int intInstru = instruToInt(instructionEntry.getIns());
         HexList instruByte = int2bytes(1, intInstru);
-        sink.writeln(instruByte);
-        print((instructionEntry.ins) + instructionEntry.getOp().toString());
+        sink.write(instruByte);
+        // print((instructionEntry.ins) + instructionEntry.getOp().toString());
         if (instructionEntry.getOp() != -10010) {
           int opera = instructionEntry.getOp();
           if (intInstru == 0x4a) {
@@ -226,10 +231,10 @@ class OutPut {
           bool is64OrNot = is64(instructionEntry.getIns());
           if (is64OrNot) {
             HexList operaByte = long2bytes(8, opera);
-            sink.writeln(operaByte);
+            sink.write(operaByte);
           } else {
             HexList operaByte = int2bytes(4, opera);
-            sink.writeln(operaByte);
+            sink.write(operaByte);
           }
         }
       }
